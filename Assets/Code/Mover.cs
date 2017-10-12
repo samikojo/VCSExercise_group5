@@ -5,6 +5,7 @@ namespace TAMK.VCSExample
     public class Mover : MonoBehaviour
     {
 
+        public bool doRotate;
         public const string HorizontalAxis = "Horizontal";
         public const string VerticalAxis = "Vertical";
         public bool onGround = true;
@@ -16,6 +17,17 @@ namespace TAMK.VCSExample
 
         void Update()
         {
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                Rotate(true);
+            }
+            else if (Input.GetKey(KeyCode.Q))
+            {
+                Rotate(false);
+            }
+        
+
             if (Input.GetKey(KeyCode.Space) && onGround)
             {
                 onGround = false;
@@ -45,5 +57,20 @@ namespace TAMK.VCSExample
             Vector3 movementVector = inputVector * _speed;
             transform.Translate(movementVector * Time.deltaTime);
         }
+        public void Rotate(bool right)
+        {
+            if (right)
+            {
+                transform.Rotate(-5, 0, -5);
+            }
+            else
+            {
+                transform.Rotate(5, 5, 5);
+            }
+            
+        }
+
+
+
     }
 }
